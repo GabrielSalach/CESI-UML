@@ -1,0 +1,31 @@
+@startuml
+left to right direction
+
+actor "Client" as client
+actor "Agent de réservation" as agent
+actor "Administrateur" as admin
+actor "Banque" as banque
+
+package "Système de réservation" {
+    usecase "Consulter vols disponibles" as consulterVols
+    usecase "Réserver vol" as reserverVol
+    usecase "Annuler réservation" as annulerResa
+    usecase "Payer" as payer
+    usecase "Consulter itinéraire" as consulterItineraire
+    usecase "Gérer vols" as gererVols
+    usecase "Gérer tarifs" as gererTarifs
+}
+
+agent --|> client
+admin --|> agent
+
+client -- consulterVols
+client -- reserverVol
+client -- annulerResa
+client -- payer
+client -- consulterItineraire
+payer --> banque
+
+admin -- gererVols
+admin -- gererTarifs
+@enduml
